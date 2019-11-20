@@ -4,19 +4,42 @@ import WeatherData from "./WeatherData";
 import {  
     CLOUDY
 } from '../../constants/weathers';
+import api_weather from '../../constants/api_weather';
+import getWeatherFromApi from '../../services/getWeatherFromApi';
 
 const data = {
-    temperature: 5,
+    temperature: 0,
     weatherState: CLOUDY,
-    humidity: 60,
-    wind: "10 m/s"
+    humidity: 0,
+    wind: "0 m/s"
 }
 
 class WeatherLocation extends Component {
+
+    constructor(){
+        super();
+        this.state = {
+            city: "Santiago",
+            data: data
+        }
+    }
+
+    componentWillMount() {
+        fetch(api_weather)
+        .then(res => res.json())
+        .then(apiData => {
+            const newWeather = getWeatherFromApi(apiData);
+            this.setState({ data: newWeather});
+        });
+        
+    }
+
     render(){
+        const { city, data } = this.state; 
+
         return(
             <div>
-                <Location city="Santiago"/>
+                <Location city={city}/>
                 <WeatherData data={ data }/>
             </div>
         );
