@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Location = (props) => {
     const { city } = props;
     return (
-        <div>
+        <div className="cityCont">
             <h1>{ city }</h1>
         </div>
     )

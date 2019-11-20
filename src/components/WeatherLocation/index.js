@@ -6,6 +6,7 @@ import {
 } from '../../constants/weathers';
 import api_weather from '../../constants/api_weather';
 import getWeatherFromApi from '../../services/getWeatherFromApi';
+import './style.css';
 
 const data = {
     temperature: 0,
@@ -19,7 +20,7 @@ class WeatherLocation extends Component {
     constructor(){
         super();
         this.state = {
-            city: "Santiago",
+            city: "-",
             data: data
         }
     }
@@ -27,11 +28,13 @@ class WeatherLocation extends Component {
     componentWillMount() {
         fetch(api_weather)
         .then(res => res.json())
-        .then(apiData => {
-            const newWeather = getWeatherFromApi(apiData);
-            this.setState({ data: newWeather});
-        });
-        
+        .then(json => {
+            const newWeather = getWeatherFromApi(json);
+            const { name } = json;
+            this.setState({ 
+                city: name,
+                data: newWeather});
+        }).catch( err => console.log(err));
     }
 
     render(){
