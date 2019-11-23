@@ -1,49 +1,59 @@
 import React, { Component } from "react";
 import Location from "./Location";
 import WeatherData from "./WeatherData";
-import {  
-    CLOUDY
-} from '../../constants/weathers';
-import api_weather from '../../constants/api_weather';
+
+import makeApiUrl from '../../constants/api_weather';
 import getWeatherFromApi from '../../services/getWeatherFromApi';
 import './style.css';
 
-const data = {
-    temperature: 0,
-    weatherState: CLOUDY,
-    humidity: 0,
-    wind: "0 m/s"
-}
-
 class WeatherLocation extends Component {
-
-    constructor(){
-        super();
+    constructor(props){
+        const { city } = props;
+        super(props);
         this.state = {
-            city: "-",
-            data: data
+            city: city,
+            data: null
         }
     }
 
-    componentWillMount() {
-        fetch(api_weather)
-        .then(res => res.json())
-        .then(json => {
-            const newWeather = getWeatherFromApi(json);
-            const { name } = json;
-            this.setState({ 
-                city: name,
-                data: newWeather});
-        }).catch( err => console.log(err));
+    componentDidMount() {
+        const { city } = this.state;
+            fetch(makeApiUrl(city))
+            .then(res => res.json())
+            .then(json => {
+                console.log(json)
+                const newWeather = getWeatherFromApi(json);
+                this.setState({ 
+                    data: newWeather});
+                }).catch( err => console.log(err));
     }
-
+        
     render(){
-        const { city, data } = this.state; 
-
+            
+        const { data } = this.state;
+        const { city } = this.props;
+     
         return(
             <div>
                 <Location city={city}/>
-                <WeatherData data={ data }/>
+                {
+                   data ? <WeatherData data={ data }/> : 
+                   <div class="loadingio-spinner-bean-eater-42kk0sj589n">
+                       <div class="ldio-9modohex3j">
+                           <div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                            </div>
+                            <div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                   </div>
+                   
+                }
             </div>
         );
     }
