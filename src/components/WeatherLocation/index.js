@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Location from "./Location";
 import WeatherData from "./WeatherData";
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import PropTypes from 'prop-types';
 import makeApiUrl from '../../constants/api_weather';
 import getWeatherFromApi from '../../services/getWeatherFromApi';
 import './style.css';
@@ -11,17 +12,16 @@ class WeatherLocation extends Component {
         const { city } = props;
         super(props);
         this.state = {
-            city: city,
+            city,
             data: null
         }
-    }
+    } 
 
     componentDidMount() {
         const { city } = this.state;
             fetch(makeApiUrl(city))
             .then(res => res.json())
             .then(json => {
-                console.log(json)
                 const newWeather = getWeatherFromApi(json);
                 this.setState({ 
                     data: newWeather});
@@ -35,28 +35,17 @@ class WeatherLocation extends Component {
      
         return(
             <div>
-                <Location city={city}/>
+                <Location city={city}/> 
                 {
-                   data ? <WeatherData data={ data }/> : 
-                   <div class="loadingio-spinner-bean-eater-42kk0sj589n">
-                       <div class="ldio-9modohex3j">
-                           <div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                            </div>
-                            <div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
-                        </div>
-                   </div>
-                   
+                   data ? <WeatherData data={ data }/> : <CircularProgress/>  
                 }
             </div>
         );
     }
+}
+
+WeatherLocation.propTypes = {
+    city: PropTypes.string.isRequired,
 }
 
 export default WeatherLocation;
