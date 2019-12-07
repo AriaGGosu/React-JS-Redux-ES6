@@ -1,13 +1,5 @@
 .weatherDataCont {
-    background-color: rgba(0,0,0,.8);
-    color: white;
-    padding: 30px;
-    width: 400px;
-    height: 100px;
-    line-height: 100px;
-    margin: auto;
-    border-radius: 5px;
-    border: 5px solid lightslategrey;
+    color:#fff;
 }
 
 .weatherExtraInfoCont {

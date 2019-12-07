@@ -81,4 +81,8 @@ body {
     border-radius: 10px;
     padding: 40px;
     margin: 20px;
+    -webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.36);
+-moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.36);
+box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.36);
+
 }
