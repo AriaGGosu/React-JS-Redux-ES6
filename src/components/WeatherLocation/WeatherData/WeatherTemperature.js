@@ -5,7 +5,7 @@ import './styles.css';
 
 
 const getWeatherState = weatherState => {
-    const sizeIcon = "6x";
+    const sizeIcon = "4x";
     if (weatherState)
         return <WeatherIcons className="wicon" name={weatherState} size={sizeIcon}/>;
     else 

@@ -8,6 +8,7 @@ import getWeatherFromApi from '../../services/getWeatherFromApi';
 import './style.css';
 
 class WeatherLocation extends Component {
+
     constructor(props){
         const { city } = props;
         super(props);
@@ -19,6 +20,8 @@ class WeatherLocation extends Component {
 
     componentDidMount() {
         const { city } = this.state;
+
+
             fetch(makeApiUrl(city))
             .then(res => res.json())
             .then(json => {
@@ -29,12 +32,12 @@ class WeatherLocation extends Component {
     }
         
     render(){
-            
+        
         const { data } = this.state;
-        const { city } = this.props;
+        const { city, onWeatherLocationClick } = this.props;
      
         return(
-            <div>
+            <div className="weatherLocationCont" onClick={onWeatherLocationClick}>
                 <Location city={city}/> 
                 {
                    data ? <WeatherData data={ data }/> : <CircularProgress/>  
@@ -46,6 +49,7 @@ class WeatherLocation extends Component {
 
 WeatherLocation.propTypes = {
     city: PropTypes.string.isRequired,
+    onWeatherLocationClick: PropTypes.func,
 }
 
 export default WeatherLocation;

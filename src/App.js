@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       {cities.map(( city , key) => 
-        <WeatherLocation city={city} key={key}/>
+        <WeatherLocation onWeatherLocationClick={ () => handleWeatherLocationClick(city) } city={city} key={key}/>
       )}
     </div>
   );
