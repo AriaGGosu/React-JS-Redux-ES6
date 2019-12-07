@@ -5,6 +5,9 @@ import WeatherLocation from "./components/WeatherLocation";
 function App() {
 
   const cities = ['Santiago,cl', 'Viña del mar,cl','Tokyo,jp','Osaka,jp','Yokohama,jp'];
+  const handleWeatherLocationClick = () => {
+    console.log("handleWeatherLocationClick")
+  }
   return (
     <div className="App">
       {cities.map(( city , key) => 
