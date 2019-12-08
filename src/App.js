@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import WeatherLocation from "./components/WeatherLocation";
+import { Grid, Row, Col} from "react-flexbox-grid";
 
 
 function App() {
@@ -12,13 +13,19 @@ function App() {
   }
   return (
         <div className="App">
-          {cities.map(( city , key) => 
-            <WeatherLocation 
-            onWeatherLocationClick={ () => handleWeatherLocationClick(city) } 
-            city={city} 
-            key={key}
-            />
-            )}
+          <Grid>
+            <Row>
+              {cities.map(( city , key) => 
+                <Col xs={12} sm={12} md={6} lg={6}>
+                  <WeatherLocation 
+                    onWeatherLocationClick={ () => handleWeatherLocationClick(city) } 
+                    city={city} 
+                    key={key}
+                  />
+                </Col>
+                )}
+            </Row>
+          </Grid>
         </div>
   );
 }
