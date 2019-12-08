@@ -12,21 +12,22 @@ function App() {
     console.log(city)
   }
   return (
-        <div className="App">
-          <Grid>
-            <Row>
-              {cities.map(( city , key) => 
-                <Col xs={12} sm={12} md={6} lg={6}>
-                  <WeatherLocation 
-                    onWeatherLocationClick={ () => handleWeatherLocationClick(city) } 
-                    city={city} 
-                    key={key}
-                  />
-                </Col>
-                )}
-            </Row>
-          </Grid>
-        </div>
+    <div className="App">
+      <Grid fluid>
+        <Row>
+          {cities.map(( city , key) => 
+          // in this you can set the size of the Col like this
+            <Col xs={12} sm={12} md={6} lg={6}>
+              <WeatherLocation 
+                onWeatherLocationClick={ () => handleWeatherLocationClick(city) } 
+                city={city} 
+                key={key}
+              />
+            </Col>
+            )}
+        </Row>
+      </Grid>
+    </div>
   );
 }
 
