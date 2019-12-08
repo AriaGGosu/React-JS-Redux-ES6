@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Location from "./Location";
 import WeatherData from "./WeatherData";
-import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 import makeApiUrl from '../../constants/api_weather';
 import getWeatherFromApi from '../../services/getWeatherFromApi';
 import './style.css';
+import CircularProgress from "@material-ui/core/CircularProgress"
 
 class WeatherLocation extends Component {
 
