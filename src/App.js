@@ -1,4 +1,7 @@
 import React from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import './App.css';
 import WeatherLocation from "./components/WeatherLocation";
 import { Grid, Row, Col} from "react-flexbox-grid";
@@ -15,16 +18,29 @@ function App() {
     <div className="App">
       <Grid fluid>
         <Row>
-          {cities.map(( city , key) => 
-          // in this you can set the size of the Col like this
-            <Col xs={12} sm={12} md={6} lg={6}>
-              <WeatherLocation 
-                onWeatherLocationClick={ () => handleWeatherLocationClick(city) } 
-                city={city} 
-                key={key}
-              />
-            </Col>
-            )}
+          <AppBar position="sticky">
+            <Toolbar>
+              <Typography variant="title" color="inherit">
+                Titulo
+              </Typography>
+            </Toolbar>
+          </AppBar>
+        </Row>
+        <Row>
+          <Col xs={12} sm={12} md={6} lg={6}>
+            <div className="weatherCont">
+              {cities.map(( city , key) =>
+                <WeatherLocation 
+                  onWeatherLocationClick={ () => handleWeatherLocationClick(city) } 
+                  city={city} 
+                  key={key}
+                />
+              )}
+            </div>
+          </Col>
+          <Col xs={12} md={6}>
+            <div className="details"></div>
+          </Col>
         </Row>
       </Grid>
     </div>

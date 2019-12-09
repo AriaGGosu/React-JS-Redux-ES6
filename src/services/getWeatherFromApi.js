@@ -31,7 +31,7 @@ const  getWeatherFromApi = apiData => {
     console.log(apiData.weather[0])
     console.log(weatherState);
     const data = {
-        temperature: temp,
+        temperature: temp.toFixed(0),
         weatherState,
         humidity,
         wind: `${speed} m/s`
