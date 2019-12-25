@@ -27,7 +27,7 @@ function App() {
           </AppBar>
         </Row>
         <Row>
-          <Col xs={12} md={6}>
+          <Col xs={12} md={6} lg={6}>
             <div className="weatherCont">
               {cities.map(( city , key) =>
                 <WeatherLocation 
@@ -38,7 +38,7 @@ function App() {
               )}
             </div>
           </Col>
-          <Col xs={12} md={6}>
+          <Col xs={12} md={6} lg={6}>
             <div className="details"></div>
           </Col>
         </Row>
